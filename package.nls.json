@@ -1,0 +1,6 @@
+{
+    "displayName" : "Snippets in project",
+    "description" : "Create snippet base your project dir & Snippet file language server",
+    "configuration.dir.title" : "snippets dir",
+    "configuration.dir.description": "Default snippet create dir"
+}

@@ -1,0 +1,40 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "description": "vscode snippet schema",
+    "properties": {
+        "$schema": {"type":"string" }
+    },
+    "patternProperties": {
+        ".*": {
+            "type":"object",
+            "properties": {
+                "prefix": {
+                    "type":"string",
+                    "pattern": "^[^\\W]$",
+                    "description": "snippet name, use for input."
+                },
+                "scope": {
+                    "type": "string",
+                    "description": "languageId list for this, split by ','."
+                },
+                "body": {
+                    "type": "array",
+                    "items": {
+                        "type":"string",
+                        "pattern": "^[^\\r\\n]*$"
+                    },
+                    "minItems": 1,
+                    "description": "Code body, one item for one line."
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Description for this snippet."
+                }
+            },
+            "required":[
+                "prefix", "body"
+            ]
+        }
+    }
+}

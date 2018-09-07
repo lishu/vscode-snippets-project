@@ -1,0 +1,75 @@
+{
+    "name": "snippets-project",
+    "displayName": "%displayName%",
+    "description": "%description%",
+    "version": "0.0.1",
+    "publisher": "jock",
+    "icon": "./images/logo.png",
+    "engines": {
+        "vscode": "^1.27.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "workspaceContains:snippets/*.json",
+        "onLanguage:json",
+        "onCommand:extension.insertSnippetOutside"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "jsonValidation": [
+            {
+                "fileMatch": "snippets/*.json",
+                "url": "./snippet.json"
+            }
+        ],
+        "commands": [
+            {
+                "command": "extension.insertSnippetOutside",
+                "title": "Insert Snippet Outside"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "command": "extension.insertSnippetOutside",
+                    "when": "editorHasSelection && !editorHasMultipleSelections"
+                }
+            ]
+        },
+        "configuration":[
+            {
+                "title": "%displayName%",
+                "properties": {
+                    "snippets.project.dir": {
+                        "title": "%configuration.dir.title%",
+                        "description": "%configuration.dir.description%",
+                        "type": "string",
+                        "enum": [
+                            "./snippets",
+                            "./.vscode/snippets"
+                        ]
+                    }
+                }
+            }
+        ],
+        "configurationDefaults": {
+            "snippets.project.dir": "./snippets"
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.21",
+        "tslint": "^5.8.0",
+        "@types/node": "^8.10.25",
+        "@types/mocha": "^2.2.42"
+    }
+}
