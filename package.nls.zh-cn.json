@@ -2,5 +2,7 @@
     "displayName" : "项目代码片段",
     "description" : "建立基于您的项目目录的代码片段并提供代码片段语言服务",
     "configuration.dir.title" : "代码片段目录",
-    "configuration.dir.description": "默认在项目中创建代码片段的目录"
+    "configuration.dir.description": "默认在项目中创建代码片段的目录",
+    "commands.insertSnippetOutside": "插入外侧代码片段",
+    "commands.createSnippet": "创建一个项目内代码片段"
 }

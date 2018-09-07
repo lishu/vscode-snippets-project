@@ -1,0 +1,8 @@
+{
+    "displayName" : "項目代碼片段",
+    "description" : "建立基於您的專案目錄的代碼片段並提供代碼片段語言服務",
+    "configuration.dir.title" : "代碼片段目錄",
+    "configuration.dir.description": "預設在專案中創建代碼片段的目錄",
+    "commands.insertSnippetOutside": "插入外側代碼片段",
+    "commands.createSnippet": "創建一個項目內代碼片段"
+}

@@ -1,0 +1,11 @@
+{
+	"a property block" : {
+        "prefix" : "propb",
+        "description" : "Create a Property Block",
+        "body" : [
+            "\"${1:name}\" : {",
+            "\t$0",
+            "}"
+        ]
+    }
+}

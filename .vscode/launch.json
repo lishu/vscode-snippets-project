@@ -12,7 +12,8 @@
             "runtimeExecutable": "${execPath}",
             "args": [
                 "${workspaceFolder}/test",
-                "--extensionDevelopmentPath=${workspaceFolder}"
+                "--extensionDevelopmentPath=${workspaceFolder}",
+                "--locale=en"
             ],
             "outFiles": [
                 "${workspaceFolder}/out/**/*.js"

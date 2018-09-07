@@ -11,7 +11,7 @@
             "properties": {
                 "prefix": {
                     "type":"string",
-                    "pattern": "^[^\\W]$",
+                    "pattern": "^\\S*$",
                     "description": "snippet name, use for input."
                 },
                 "scope": {

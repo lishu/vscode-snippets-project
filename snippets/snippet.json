@@ -1,0 +1,15 @@
+{
+    "Snippet": {
+        "prefix": "snippet",
+        "description" : "Create a code snippet property block",
+        "body": [
+            "\"${1:Display Name}\" : {",
+            "\t\"prefix\" : \"${2:Prefix}\",",
+            "\t\"description\" : \"${3:Description}\",",
+            "\t\"body\" : [",
+            "\t\t\"$0\"",
+            "\t]",
+            "}"
+        ]
+    }
+}

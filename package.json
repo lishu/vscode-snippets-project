@@ -4,9 +4,13 @@
     "description": "%description%",
     "version": "0.0.1",
     "publisher": "jock",
-    "icon": "./images/logo.png",
+    "icon": "images/logo.png",
     "engines": {
         "vscode": "^1.27.0"
+    },
+    "repository": {
+        "type": "github",
+        "url": "https://github.com/lishu/vscode-snippets-project"
     },
     "categories": [
         "Other"
@@ -14,7 +18,8 @@
     "activationEvents": [
         "workspaceContains:snippets/*.json",
         "onLanguage:json",
-        "onCommand:extension.insertSnippetOutside"
+        "onCommand:extension.insertSnippetOutside",
+        "onCommand:extension.createSnippet"
     ],
     "main": "./out/extension",
     "contributes": {
@@ -27,7 +32,11 @@
         "commands": [
             {
                 "command": "extension.insertSnippetOutside",
-                "title": "Insert Snippet Outside"
+                "title": "%commands.insertSnippetOutside%"
+            },
+            {
+                "command": "extension.createSnippet",
+                "title": "%commands.createSnippet%"
             }
         ],
         "menus": {
@@ -35,14 +44,24 @@
                 {
                     "command": "extension.insertSnippetOutside",
                     "when": "editorHasSelection && !editorHasMultipleSelections"
+                },
+                {
+                    "command": "extension.createSnippet",
+                    "when": "editorHasSelection && !editorHasMultipleSelections"
                 }
             ]
         },
+        "snippets": [
+            {
+                "language": "json",
+                "path": "./snippets/snippet.json"
+            }
+        ],
         "configuration":[
             {
                 "title": "%displayName%",
                 "properties": {
-                    "snippets.project.dir": {
+                    "snippets-project.dir": {
                         "title": "%configuration.dir.title%",
                         "description": "%configuration.dir.description%",
                         "type": "string",
@@ -55,7 +74,7 @@
             }
         ],
         "configurationDefaults": {
-            "snippets.project.dir": "./snippets"
+            "snippets-project.dir": "./snippets"
         }
     },
     "scripts": {
