@@ -1,15 +1,23 @@
 {
-    "Display Name" : {
-        "prefix" : "input",
+    "UMD Block" : {
+        "prefix" : "umd",
+        "description": "Create a UMD Block",
         "body" : [
-            "// $\\{1}",
-            "for (let index = 0; index < array.length; index++) {",
-            "    const element = array[index];",
-            "    if (condition) {",
-            "        alert('ok')",
+            "(function (root, factory) {",
+            "    if (typeof define === 'function' && define.amd) {",
+            "        define(['jquery'], factory);",
+            "    } else if (typeof exports === 'object') {",
+            "        module.exports = factory(require('jquery'));",
+            "    } else {",
+            "        root.returnExports = factory(root.jQuery);",
             "    }",
-            "}"
+            "}(this, function ($) {",
+            "    function ${1:myFunc}(){",
+            "      $0",
+            "    };",
+            "",
+            "    return ${1};",
+            "}));"
         ]
     }
-	
 }

@@ -1,6 +1,6 @@
 {
     "displayName" : "Snippets in project",
-    "description" : "Create snippet base your project dir & Snippet file language server",
+    "description" : "Create snippet base your project dir & Insert snippet outside",
     "configuration.dir.title" : "snippets dir",
     "configuration.dir.description": "Default snippet create dir",
     "commands.insertSnippetOutside": "Insert Snippet Outside",

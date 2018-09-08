@@ -4,6 +4,16 @@ import * as path from 'path';
 
 import * as extpackage from './extpackage';
 
+function mkdirsSync(p: string) {
+    if(!fs.existsSync(p)){
+        const parent = path.dirname(p);
+        if(!fs.existsSync(parent)) {
+            mkdirsSync(parent);
+        }
+        fs.mkdirSync(p);
+    }
+}
+
 export interface Snippet {
     prefix: string;
     body: Array<string>;
@@ -113,7 +123,7 @@ export function init(context: vscode.ExtensionContext){
     setTimeout(()=>{
         scanOutsideExtensionSnippets();
         scanWorkspaceSnippets();
-    }, 500);
+    }, 100);
 
     context.subscriptions.push(vscode.workspace.onDidChangeTextDocument(onWorkspaceDidChangeTextDocument));
 }
@@ -241,7 +251,15 @@ export function createSnippet()
         if(!workspace) {
             workspace = vscode.workspace.workspaceFolders[0];
         }
-        const fullpath = path.join(workspace.uri.fsPath, dir, vscode.window.activeTextEditor.document.languageId + '.json');
+        const fulldir = path.join(workspace.uri.fsPath, dir);
+        if(!fs.existsSync(fulldir)) {
+            try{
+                mkdirsSync(fulldir);
+            }catch(e) {
+                console.error(e);
+            }
+        }
+        const fullpath = path.join(fulldir, vscode.window.activeTextEditor.document.languageId + '.json');
         fs.exists(fullpath, exists=>{
             if(!exists) {                
                 fs.writeFileSync(fullpath, '{\n\t\n}', {encoding: 'utf8'});

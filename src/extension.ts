@@ -11,8 +11,8 @@ export function activate(context: vscode.ExtensionContext) {
     init(context);
 
     context.subscriptions.push(
-        vscode.commands.registerCommand('extension.insertSnippetOutside', insertSnippetOutside),
-        vscode.commands.registerCommand('extension.createSnippet', createSnippet),
+        vscode.commands.registerCommand('snippets-project.insertSnippetOutside', insertSnippetOutside),
+        vscode.commands.registerCommand('snippets-project.createSnippet', createSnippet),
         vscode.languages.registerCompletionItemProvider({pattern:'**'}, new SnippetCompletionItemProvider(), 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z')
     );
 }

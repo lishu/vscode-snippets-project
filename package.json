@@ -4,6 +4,7 @@
     "description": "%description%",
     "version": "0.0.1",
     "publisher": "jock",
+    "license": "MIT",
     "icon": "images/logo.png",
     "engines": {
         "vscode": "^1.27.0"
@@ -13,13 +14,14 @@
         "url": "https://github.com/lishu/vscode-snippets-project"
     },
     "categories": [
+        "Snippets",
         "Other"
     ],
     "activationEvents": [
         "workspaceContains:snippets/*.json",
         "onLanguage:json",
-        "onCommand:extension.insertSnippetOutside",
-        "onCommand:extension.createSnippet"
+        "onCommand:snippets-project.insertSnippetOutside",
+        "onCommand:snippets-project.createSnippet"
     ],
     "main": "./out/extension",
     "contributes": {
@@ -31,23 +33,25 @@
         ],
         "commands": [
             {
-                "command": "extension.insertSnippetOutside",
+                "command": "snippets-project.insertSnippetOutside",
                 "title": "%commands.insertSnippetOutside%"
             },
             {
-                "command": "extension.createSnippet",
+                "command": "snippets-project.createSnippet",
                 "title": "%commands.createSnippet%"
             }
         ],
         "menus": {
             "editor/context": [
                 {
-                    "command": "extension.insertSnippetOutside",
-                    "when": "editorHasSelection && !editorHasMultipleSelections"
+                    "command": "snippets-project.insertSnippetOutside",
+                    "when": "editorHasSelection && !editorHasMultipleSelections",
+                    "group": "1_modification "
                 },
                 {
-                    "command": "extension.createSnippet",
-                    "when": "editorHasSelection && !editorHasMultipleSelections"
+                    "command": "snippets-project.createSnippet",
+                    "when": "editorHasSelection && !editorHasMultipleSelections",
+                    "group": "1_modification "
                 }
             ]
         },
@@ -75,7 +79,15 @@
         ],
         "configurationDefaults": {
             "snippets-project.dir": "./snippets"
-        }
+        },
+        "keybindings":[
+            {
+                "command": "snippets-project.insertSnippetOutside",
+                "key": "ctrl+alt+i",
+                "mac": "ctrl+cmd+i",
+                "when": "editorHasSelection && !editorHasMultipleSelections"
+            }
+        ]
     },
     "scripts": {
         "vscode:prepublish": "npm run compile",
