@@ -219,12 +219,21 @@ export function insertSnippetOutside()
             pick.items = pickItems;
             pick.onDidAccept(e=>{
                 if(pick.selectedItems && pick.selectedItems.length) {
-                    const selectedText = editor.document.getText(selection);
+                    let selectedText = editor.document.getText(selection);
+                    if(selectedText) {
+                        selectedText = selectedText.replace(/\$|}|\\/g, '\\$&');
+                    }
                     const insertStart = selection.active.isEqual(selection.start);
                     const body = (<SnippetQuickPickItem>pick.selectedItems[0]).snippet.body;
                     const lines: string[] = [];
                     for(var line of body) {
-                        line = line.replace('$0', insertStart ? ('$0'+selectedText.replace(/\$|}|\\/g, '\\$&')) : (selectedText.replace(/\$|}|\\/g, '\\$&') + '$0'));
+                        if(line.indexOf('$0')>-1) {
+                            const indentTest = /^(\s*)\$0$/.exec(line);
+                            if(indentTest && indentTest.length > 1) {
+                                selectedText = selectedText.replace(/\n/g, '\n'+indentTest[1]);
+                            }
+                            line = line.replace('$0', insertStart ? ('$0'+selectedText) : (selectedText + '$0'));
+                        }
                         lines.push(line);
                     }
                     editor.insertSnippet(new vscode.SnippetString(lines.join('\n')));
@@ -270,27 +279,29 @@ export function createSnippet()
                     const hasProperies = snippetJsonAnyItem(doc);
                     vscode.window.showTextDocument(doc).then(editor=>{
                         const ss = new vscode.SnippetString();
+                        let indent = '\t';
                         if(hasProperies) {
                             ss.appendText(',\n');
+                            indent = '';
                         } else {
                             ss.appendText('\n');
                         }
-                        ss.appendText('\t\"');
+                        ss.appendText(indent+'\"');
                         ss.appendPlaceholder('Display Name');
                         ss.appendText('\" : {\n');
-                        ss.appendText('\t\t\"prefix\" : \"');
+                        ss.appendText(indent+'\t\"prefix\" : \"');
                         ss.appendPlaceholder('input');
                         ss.appendText('\",\n');
-                        ss.appendText('\t\t\"body\" : [');
+                        ss.appendText(indent+'\t\"body\" : [');
                         if(selectionText) {
                             let more = false;
                             for(var line of selectionText.split(/\r?\n/)) {
-                                ss.appendText((more?',':'') + '\n\t\t\t' + JSON.stringify(line));
+                                ss.appendText((more?',':'') + '\n'+indent+'\t\t' + JSON.stringify(line));
                                 more = true;
                             }
                         } 
-                        ss.appendText('\n\t\t]\n');
-                        ss.appendText('\t}');
+                        ss.appendText('\n'+indent+'\t]\n');
+                        ss.appendText(indent+'}');
                         ss.appendPlaceholder("");
                         editor.insertSnippet(ss, location);
                     });
