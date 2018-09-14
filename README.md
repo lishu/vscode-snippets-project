@@ -36,4 +36,7 @@ The vscode code snippet can do more. Check vscode doc links below get full power
 ## Bug Report
 [Github Issues](https://github.com/lishu/vscode-snippets-project/issues)
 
+## Donations
+[Buy me a cup of coffee.](https://www.paypal.me/jockli)
+
 **Enjoy!**
