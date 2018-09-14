@@ -37,6 +37,12 @@ The vscode code snippet can do more. Check vscode doc links below get full power
 [Github Issues](https://github.com/lishu/vscode-snippets-project/issues)
 
 ## Donations
-[Buy me a cup of coffee.](https://www.paypal.me/jockli)
+Buy me a cup of coffee.
+
+[Paypal](https://www.paypal.me/jockli)
+
+![Alipay](images/alipay.jpg)
+
+![Wechat](images/wechatpay.jpg)
 
 **Enjoy!**
